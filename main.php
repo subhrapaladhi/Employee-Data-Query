@@ -23,7 +23,6 @@
 <body>
     <h1>Choose Employee</h1>
 <?php
-    // require('conn.php');
     $conn = new mysqli("localhost","root","","Employee");
     if($conn->connect_error){
         die("Connection to Mysql failed");
@@ -40,7 +39,9 @@
                     echo "No Data in table";
                 }else{
                     while($row = $result->fetch_assoc()){
-                        echo '<option value="'.$row["Empid"].'">'.$row["Empid"].'</option>';
+                        echo '<option value="'
+                        .$row["Empid"].'">'
+                        .$row["Empid"].'</option>';
                     }
                 }
             ?>
@@ -58,7 +59,9 @@
                     echo "No Data in table";
                 }else{
                     while($row = $result->fetch_assoc()){
-                        echo '<option value="'.$row["Empname"].'">'.$row["Empname"].'</option>';
+                        echo '<option value="'
+                        .$row["Empname"].'">'
+                        .$row["Empname"].'</option>';
                     }
                 }
             ?>

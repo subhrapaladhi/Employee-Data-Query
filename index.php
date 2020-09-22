@@ -9,6 +9,9 @@ h1{
     text-align: center;
     font-size: 300%;
 }
+h2{
+    text-align: center;  
+}
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
@@ -34,7 +37,9 @@ th, td{
     }
 
     if(isset($_POST['submit'])){
-        $q = "SELECT Deptid FROM employee WHERE Empid=".$_POST['empid'].' AND Empname="'.$_POST['empname'].'"';
+        $q = "SELECT Deptid FROM employee WHERE Empid="
+            .$_POST['empid'].' AND Empname="'
+            .$_POST['empname'].'"';
         $ans = $conn->query($q);
 
         // Check if department id is found
@@ -71,7 +76,7 @@ th, td{
                 echo "No Data in table";
             }
         } else {
-            echo "no employee with that employee id and name found";
+            echo "<h2>no employee with that employee id and name found</h2>";
         }
     } else {
         echo "no data found";
