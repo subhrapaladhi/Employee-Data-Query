@@ -2,25 +2,36 @@
 <head>
     <title>Employee Data</title>
 </head>
-<body>
 
+<style>
+    h1{
+        text-align: center;
+        font-size: 300%;
+    }
+    form{
+        padding-left: 40%;
+        font-size: 125%;
+    }
+    input{
+        font-size: 85%;
+    }
+    select{
+        font-size: 100%;
+    }
+</style>
+
+<body>
+    <h1>Choose Employee</h1>
 <?php
     // require('conn.php');
     $conn = new mysqli("localhost","root","","Employee");
     if($conn->connect_error){
         die("Connection to Mysql failed");
-        echo "flkdsfj";
-    }
-    //get all data from sql
-    $query = "SELECT * FROM employee";
-    $result = $conn->query($query);
-    if ($result->num_rows < 0){
-        echo "No Data in table";
     }
 ?>
 
-    <form action="index.php">
-        <label for="empid">Employee ID</label>
+    <form action="./index.php" method="post">
+        <label for="empid">Employee ID: </label>
         <select name="empid" id="empid">
             <?php
                 $query = "SELECT Empid FROM employee";
@@ -36,8 +47,9 @@
         </select>
 
         <br>
+        <br>
         
-        <label for="empname">Employee Name</label>
+        <label for="empname">Employee Name: </label>
         <select name="empname" id="empname">
             <?php
                 $query = "SELECT Empname FROM employee";
@@ -53,57 +65,9 @@
         </select>
 
         <br>
-        
-        <label for="empname">Date of Birth</label>
-        <select name="dob" id="dob">
-            <?php
-                $query = "SELECT DISTINCT DOB FROM employee";
-                $result = $conn->query($query);
-                if ($result->num_rows < 0){
-                    echo "No Data in table";
-                }else{
-                    while($row = $result->fetch_assoc()){
-                        echo '<option value="'.$row["DOB"].'">'.$row["DOB"].'</option>';
-                    }
-                }
-            ?>
-        </select>
-
         <br>
         
-        <label for="empname">Basic Pay</label>
-        <select name="pay" id="pay">
-            <?php
-                $query = "SELECT DISTINCT Basicpay FROM employee";
-                $result = $conn->query($query);
-                if ($result->num_rows < 0){
-                    echo "No Data in table";
-                }else{
-                    while($row = $result->fetch_assoc()){
-                        echo '<option value="'.$row["Basicpay"].'">'.$row["Basicpay"].'</option>';
-                    }
-                }
-            ?>
-        </select>
-        <br>
-        <label for="empname">Department ID</label>
-        <select name="deptid" id="deptid">
-            <?php
-                $query = "SELECT DISTINCT Deptid FROM employee";
-                $result = $conn->query($query);
-                if ($result->num_rows < 0){
-                    echo "No Data in table";
-                }else{
-                    while($row = $result->fetch_assoc()){
-                        echo '<option value="'.$row["Deptid"].'">'.$row["Deptid"].'</option>';
-                    }
-                }
-            ?>
-        </select>
-        
-        <br>
-
-        <input type="submit">
+        <input type="submit" name="submit">
     </form>
 </body>
 </html>
